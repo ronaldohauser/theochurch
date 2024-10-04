@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const FooterContainer = styled.footer`
   background-color: black;
   color: white;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
   width: 100%;
 `;
@@ -16,8 +16,8 @@ const FooterText = styled.p`
   font-size: 20px;
 
   @media (max-width: 768px) {
-    font-size: 16px; /* Reduz o tamanho da fonte em telas pequenas */
-    padding: 10px; /* Ajusta o padding para telas menores */
+    font-size: 12px;
+    padding: 10px;
   }
 `;
 

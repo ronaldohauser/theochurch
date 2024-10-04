@@ -1,29 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import bannerImage from '../assets/slide1.jpg'; // certifique-se de que o caminho para a imagem está correto
+import bannerImage from '../assets/slide1.jpg';
 
-// Estilizando os componentes
 const BannerContainer = styled.div`
   background-image: url(${bannerImage});
   background-size: cover;
   background-position: center;
-  height: 300px; 
+  height: 500px; 
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  font-size: 36px; // Tamanho do título
+  font-size: 36px;
+  margin-top: 60px; /* Garante que o banner não fique oculto pelo header */
 
   @media (max-width: 768px) {
-    height: 200px; // Altura reduzida em telas menores
-    font-size: 28px; // Tamanho do título reduzido
+    height: 200px;
+    font-size: 28px;
   }
 
   @media (max-width: 480px) {
-    height: 150px; // Altura ainda menor para telas muito pequenas
-    font-size: 24px; // Tamanho do título reduzido
+    height: 150px;
+    font-size: 24px;
   }
 `;
 
@@ -31,6 +31,10 @@ const CelulasContainer = styled.div`
   padding: 20px;
   text-align: center;
   font-family: 'Poppins', sans-serif;
+
+  @media (max-width: 768px) {
+    padding: 10px; /* Reduz o padding em telas menores */
+  }
 `;
 
 const CellGroup = styled.div`
@@ -43,11 +47,11 @@ const CellTitle = styled.h3`
   color: black;
 
   @media (max-width: 768px) {
-    font-size: 20px; // Tamanho reduzido em telas menores
+    font-size: 20px;
   }
 
   @media (max-width: 480px) {
-    font-size: 18px; // Tamanho ainda menor para telas muito pequenas
+    font-size: 18px;
   }
 `;
 
@@ -57,11 +61,11 @@ const CellAddress = styled.p`
   color: black;
 
   @media (max-width: 768px) {
-    font-size: 16px; // Tamanho reduzido em telas menores
+    font-size: 16px;
   }
 
   @media (max-width: 480px) {
-    font-size: 14px; // Tamanho ainda menor para telas muito pequenas
+    font-size: 14px;
   }
 `;
 
@@ -70,11 +74,11 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
-  flex-wrap: wrap; // Permite que os botões se movam para a próxima linha se não houver espaço
+  flex-wrap: wrap;
 
   @media (max-width: 480px) {
-    flex-direction: column; // Coloca os botões em coluna em telas muito pequenas
-    align-items: center; // Centraliza os botões
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -84,7 +88,7 @@ const StyledButton = styled(Link)`
   padding: 10px 0;
   font-size: 18px;
   text-decoration: none;
-  width: 150px; // largura fixa para os botões terem o mesmo tamanho
+  width: 150px;
   text-align: center;
   transition: background-color 0.3s ease;
 
@@ -93,17 +97,16 @@ const StyledButton = styled(Link)`
   }
 
   @media (max-width: 768px) {
-    font-size: 16px; // Tamanho reduzido em telas menores
-    width: 120px; // Largura menor em telas menores
+    font-size: 16px;
+    width: 120px;
   }
 
   @media (max-width: 480px) {
-    font-size: 14px; // Tamanho ainda menor para telas muito pequenas
-    width: 100%; // Botões ocupam toda a largura disponível
+    font-size: 14px;
+    width: 100%;
   }
 `;
 
-// Componente principal
 const Celulas = () => {
   return (
     <div>
@@ -112,23 +115,28 @@ const Celulas = () => {
       </BannerContainer>
       <CelulasContainer>
         <CellGroup>
-          <CellTitle>THEO OSASCO: sexta-feira às 20h</CellTitle>
+          <CellTitle>OSASCO</CellTitle>
+          <CellAddress>Sexta-feira às 20h</CellAddress>
           <CellAddress>Rua Pernambucana 360 - Torre 1 - Apto 204</CellAddress>
         </CellGroup>
         <CellGroup>
-          <CellTitle>THEO VILA FORMOSA: sexta-feira às 20h</CellTitle>
+          <CellTitle>VILA FORMOSA</CellTitle>
+          <CellAddress>Sexta-feira às 20h</CellAddress>
           <CellAddress>Rua Fábio 249</CellAddress>
         </CellGroup>
         <CellGroup>
-          <CellTitle>THEO GUARULHOS: sexta-feira às 20h</CellTitle>
+          <CellTitle>GUARULHOS</CellTitle>
+          <CellAddress>Sexta-feira às 20h</CellAddress>
           <CellAddress>Rua Inah Sampaio Dogneli 155</CellAddress>
         </CellGroup>
         <CellGroup>
-          <CellTitle>THEO PENHA: sexta-feira às 20h</CellTitle>
+          <CellTitle>PENHA</CellTitle>
+          <CellAddress>Sexta-feira às 20h</CellAddress>
           <CellAddress>Av Cda. Elisabeth de Rebiano 2000 - Torre 3 - Apto 104</CellAddress>
         </CellGroup>
         <CellGroup>
-          <CellTitle>THEO DATE: sexta-feira às 20h</CellTitle>
+          <CellTitle>THEO CHURCH</CellTitle>
+          <CellAddress>Sexta-feira às 20h</CellAddress>
           <CellAddress>Rua Agua Rasa 172</CellAddress>
         </CellGroup>
         <ButtonContainer>

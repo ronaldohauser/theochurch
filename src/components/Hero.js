@@ -12,7 +12,7 @@ const HeroContainer = styled.div`
   overflow: hidden;
 
   @media (max-width: 768px) {
-    height: 400px;
+    height: 600px;
   }
 `;
 
@@ -47,21 +47,19 @@ const NavigationButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  background: none;
   color: white;
   border: none;
-  padding: 10px;
   cursor: pointer;
   z-index: 1;
-  font-size: 24px;
-  border-radius: 50%;
+  font-size: 36px;
 
   &:focus {
     outline: none;
   }
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 0.8);
   }
 
   @media (max-width: 768px) {

@@ -10,7 +10,10 @@ const HeaderContainer = styled.header`
   align-items: center;
   background-color: black;
   padding: 8px;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1;
   font-family: 'Poppins', sans-serif;
 `;
@@ -68,17 +71,33 @@ const YouTubeIcon = styled(IconLink)`
 `;
 
 const NavLink = styled(Link)`
+  position: relative; /* Adicionado para o pseudo-elemento */
   color: white;
   text-decoration: none;
   font-size: 28px;
   font-weight: bold;
-  transition: color 0.2s;
   text-transform: uppercase;
   font-family: 'Poppins', sans-serif;
+  transition: color 0.2s;
 
   &:hover {
     color: #ccc;
-    text-decoration: underline;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Distância da linha em relação ao texto */
+    width: 100%;
+    height: 2px; /* Espessura da linha */
+    background-color: #ccc; /* Cor da linha */
+    transform: scaleX(0); /* Inicia invisível */
+    transition: transform 0.3s ease; /* Transição suave */
+  }
+
+  &:hover::after {
+    transform: scaleX(1); /* Mostra a linha ao passar o mouse */
   }
 
   @media (max-width: 768px) {
