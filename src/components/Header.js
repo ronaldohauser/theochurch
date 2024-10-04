@@ -75,7 +75,7 @@ const NavLink = styled(Link)`
   color: white;
   text-decoration: none;
   font-size: 28px;
-  font-weight: bold;
+  font-weight: 300; /* Mudado para um peso de fonte mais fino */
   text-transform: uppercase;
   font-family: 'Poppins', sans-serif;
   transition: color 0.2s;

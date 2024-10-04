@@ -1,28 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import bannerImage from '../assets/slide2.jpg';
+import video from '../assets/theochurch.mp4';
 
-const BannerContainer = styled.div`
-  background-image: url(${bannerImage});
-  background-size: cover;
-  background-position: center;
+const VideoContainer = styled.div`
   height: 500px; 
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  font-size: 36px;
+  overflow: hidden;
+  margin-top: 109px;
+
+  video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
 
   @media (max-width: 768px) {
-    height: 350px; /* Reduz a altura do banner em telas menores */
-    font-size: 28px; /* Reduz o tamanho da fonte em telas menores */
+    height: 350px;
+    margin-top: 109px;
   }
 
   @media (max-width: 480px) {
-    height: 300px; /* Reduz ainda mais a altura do banner em telas pequenas */
-    font-size: 24px; /* Ajusta ainda mais o tamanho da fonte */
+    height: 300px;
+    margin-top: 109px;
   }
 `;
 
@@ -30,9 +32,10 @@ const AgendaContainer = styled.div`
   padding: 20px;
   text-align: center;
   font-family: 'Poppins', sans-serif;
+  margin-top: 20px;
 
   @media (max-width: 768px) {
-    padding: 10px; /* Reduz o padding em telas menores */
+    padding: 10px;
   }
 `;
 
@@ -42,11 +45,11 @@ const Title = styled.h2`
   color: black;
 
   @media (max-width: 768px) {
-    font-size: 28px; /* Reduz o tamanho da fonte em telas menores */
+    font-size: 28px;
   }
 
   @media (max-width: 480px) {
-    font-size: 24px; /* Ajusta ainda mais o tamanho da fonte */
+    font-size: 24px;
   }
 `;
 
@@ -57,11 +60,11 @@ const ScheduleItem = styled.div`
   color: black;
 
   @media (max-width: 768px) {
-    font-size: 16px; /* Reduz o tamanho da fonte em telas menores */
+    font-size: 16px;
   }
 
   @media (max-width: 480px) {
-    font-size: 14px; /* Ajusta ainda mais o tamanho da fonte */
+    font-size: 14px;
   }
 `;
 
@@ -71,11 +74,11 @@ const Description = styled.p`
   color: black;
 
   @media (max-width: 768px) {
-    font-size: 16px; /* Reduz o tamanho da fonte em telas menores */
+    font-size: 16px;
   }
 
   @media (max-width: 480px) {
-    font-size: 14px; /* Ajusta ainda mais o tamanho da fonte */
+    font-size: 14px;
   }
 `;
 
@@ -94,22 +97,25 @@ const Button = styled(Link)`
   }
 
   @media (max-width: 768px) {
-    font-size: 16px; /* Reduz o tamanho do botão em telas menores */
-    padding: 8px 16px; /* Ajusta o padding do botão */
+    font-size: 16px;
+    padding: 8px 16px;
   }
 
   @media (max-width: 480px) {
-    font-size: 14px; /* Ajusta ainda mais o tamanho do botão */
-    padding: 6px 12px; /* Ajusta o padding do botão */
+    font-size: 14px;
+    padding: 6px 12px;
   }
 `;
 
 const Agenda = () => {
   return (
     <div>
-      <BannerContainer>
-        <h1>Agenda</h1>
-      </BannerContainer>
+      <VideoContainer>
+        <video autoPlay loop muted>
+          <source src={video} type="video/mp4" />
+          Seu navegador não suporta o formato de vídeo.
+        </video>
+      </VideoContainer>
       <AgendaContainer>
         <Title>Cultos</Title>
         {["Domingo: 10h e 19h", "Quarta: 20h"].map((item, index) => (
