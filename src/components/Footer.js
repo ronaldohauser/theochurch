@@ -12,13 +12,19 @@ const FooterContainer = styled.footer`
 const FooterText = styled.p`
   margin: 0;
   font-size: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 16px; /* Reduz o tamanho da fonte em telas pequenas */
+    padding: 10px; /* Ajusta o padding para telas menores */
+  }
 `;
 
 function Footer() {
   return (
     <FooterContainer>
       <FooterText>
-        &copy; {new Date().getFullYear()} Theo Church. Todos os direitos reservados. <br></br> Desenvolvido por Ronaldo Hauser Dias.
+        &copy; {new Date().getFullYear()} Theo Church. Todos os direitos reservados. <br />
+        Desenvolvido por Ronaldo Hauser Dias.
       </FooterText>
     </FooterContainer>
   );

@@ -9,14 +9,14 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   background-color: black;
-  padding: 20px;
+  padding: 8px;
   position: relative;
   z-index: 1;
   font-family: 'Poppins', sans-serif;
 `;
 
 const Logo = styled.img`
-  width: 120px;
+  width: 100px;
 
   @media (max-width: 768px) {
     width: 100px;
@@ -124,9 +124,10 @@ const Header = () => {
           </>
         )}
         <NavLink to="/">HOME</NavLink>
-        <NavLink to="/about">SOBRE</NavLink>
+        <NavLink to="/sobre-nos">SOBRE</NavLink>
         <NavLink to="/agenda">AGENDA</NavLink>
         <NavLink to="/ministerios">MINISTÉRIOS</NavLink>
+        <NavLink to="/celulas">CÉLULAS</NavLink> {/* Novo menu adicionado */}
         <NavLink to="/contato">CONTATO</NavLink>
       </Nav>
     </HeaderContainer>

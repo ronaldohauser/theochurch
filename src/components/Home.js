@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaChurch, FaQuestionCircle, FaPray } from 'react-icons/fa';
 import VideoGallery from './VideoGallery'; 
+import { Link } from 'react-router-dom'; // Importando Link
 
 const WelcomeContainer = styled.div`
   text-align: center;
@@ -66,7 +67,7 @@ const CardsContainer = styled.div`
   }
 `;
 
-const Card = styled.div`
+const Card = styled(Link)` // Alterado para Link
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -76,6 +77,8 @@ const Card = styled.div`
   padding: 20px;
   cursor: pointer;
   transition: transform 0.2s;
+  text-decoration: none; // Removendo o sublinhado do Link
+  color: inherit; // Mantendo a cor do texto igual à do Card
 
   &:hover {
     transform: scale(1.05);
@@ -115,10 +118,6 @@ const CardsTitle = styled.h2`
 `;
 
 const Home = () => {
-  const handleCardClick = (message) => {
-    alert(`Você clicou no card "${message}"`);
-  };
-
   return (
     <div>
       <WelcomeContainer>
@@ -140,19 +139,19 @@ const Home = () => {
       </CardsSection>
 
       <CardsContainer>
-        <Card onClick={() => handleCardClick('Procuro uma igreja para congregar.')}>
+        <Card to="/about"> {/* Redireciona para o menu "Sobre" */}
           <IconContainer>
             <FaChurch />
           </IconContainer>
           <CardText>Procuro uma igreja para congregar.</CardText>
         </Card>
-        <Card onClick={() => handleCardClick('Não sou Cristão, mas tenho curiosidade.')}>
+        <Card to="/agenda"> {/* Redireciona para o menu "Agenda" */}
           <IconContainer>
             <FaQuestionCircle />
           </IconContainer>
           <CardText>Não sou Cristão, mas tenho curiosidade.</CardText>
         </Card>
-        <Card onClick={() => handleCardClick('Gostaria de fazer um pedido de oração.')}>
+        <Card to="/celulas"> {/* Redireciona para o menu "CÉLULAS" */}
           <IconContainer>
             <FaPray />
           </IconContainer>
