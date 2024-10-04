@@ -134,8 +134,8 @@ const Header = () => {
         <NavLink to="/" onClick={handleLinkClick}>HOME</NavLink>
         <NavLink to="/sobre-nos" onClick={handleLinkClick}>SOBRE</NavLink>
         <NavLink to="/agenda" onClick={handleLinkClick}>AGENDA</NavLink>
-        <NavLink to="/ministerios" onClick={handleLinkClick}>MINISTÉRIOS</NavLink>
         <NavLink to="/celulas" onClick={handleLinkClick}>CÉLULAS</NavLink>
+        <NavLink to="/ministerios" onClick={handleLinkClick}>MINISTÉRIOS</NavLink>
         <NavLink to="/contato" onClick={handleLinkClick}>CONTATO</NavLink>
       </Nav>
     </HeaderContainer>

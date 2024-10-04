@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// Estilizando o container do footer
 const FooterContainer = styled.footer`
   background-color: black;
   color: white;
@@ -9,6 +10,7 @@ const FooterContainer = styled.footer`
   width: 100%;
 `;
 
+// Estilizando o texto do footer
 const FooterText = styled.p`
   margin: 0;
   font-size: 20px;
@@ -19,15 +21,18 @@ const FooterText = styled.p`
   }
 `;
 
-function Footer() {
+// Componente principal
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <FooterContainer>
       <FooterText>
-        &copy; {new Date().getFullYear()} Theo Church. Todos os direitos reservados. <br />
+        &copy; {currentYear} Theo Church. Todos os direitos reservados. <br />
         Desenvolvido por Ronaldo Hauser Dias.
       </FooterText>
     </FooterContainer>
   );
-}
+};
 
 export default Footer;

@@ -4,6 +4,7 @@ import { FaChurch, FaQuestionCircle, FaPray } from 'react-icons/fa';
 import VideoGallery from './VideoGallery'; 
 import { Link } from 'react-router-dom'; // Importando Link
 
+// Estilos para os componentes
 const WelcomeContainer = styled.div`
   text-align: center;
   padding: 20px 10%;
@@ -67,7 +68,7 @@ const CardsContainer = styled.div`
   }
 `;
 
-const Card = styled(Link)` // Alterado para Link
+const Card = styled(Link)`
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -117,6 +118,7 @@ const CardsTitle = styled.h2`
   }
 `;
 
+// Componente principal
 const Home = () => {
   return (
     <div>
@@ -133,13 +135,11 @@ const Home = () => {
       <VideoGallery />
 
       <CardsSection>
-        <CardsTitle>
-          Conheça nossa comunidade!
-        </CardsTitle>
+        <CardsTitle>Conheça nossa comunidade!</CardsTitle>
       </CardsSection>
 
       <CardsContainer>
-        <Card to="/about"> {/* Redireciona para o menu "Sobre" */}
+        <Card to="/sobre-nos"> {/* Redireciona para o menu "Sobre" */}
           <IconContainer>
             <FaChurch />
           </IconContainer>
