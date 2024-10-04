@@ -15,6 +15,16 @@ const BannerContainer = styled.div`
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   font-size: 36px; // Tamanho do título
+
+  @media (max-width: 768px) {
+    height: 200px; // Altura reduzida em telas menores
+    font-size: 28px; // Tamanho do título reduzido
+  }
+
+  @media (max-width: 480px) {
+    height: 150px; // Altura ainda menor para telas muito pequenas
+    font-size: 24px; // Tamanho do título reduzido
+  }
 `;
 
 const CelulasContainer = styled.div`
@@ -31,12 +41,28 @@ const CellTitle = styled.h3`
   font-size: 24px;
   margin-bottom: 10px;
   color: black;
+
+  @media (max-width: 768px) {
+    font-size: 20px; // Tamanho reduzido em telas menores
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px; // Tamanho ainda menor para telas muito pequenas
+  }
 `;
 
 const CellAddress = styled.p`
   font-size: 18px;
   margin: 5px 0;
   color: black;
+
+  @media (max-width: 768px) {
+    font-size: 16px; // Tamanho reduzido em telas menores
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px; // Tamanho ainda menor para telas muito pequenas
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -44,6 +70,12 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
+  flex-wrap: wrap; // Permite que os botões se movam para a próxima linha se não houver espaço
+
+  @media (max-width: 480px) {
+    flex-direction: column; // Coloca os botões em coluna em telas muito pequenas
+    align-items: center; // Centraliza os botões
+  }
 `;
 
 const StyledButton = styled(Link)`
@@ -58,6 +90,16 @@ const StyledButton = styled(Link)`
 
   &:hover {
     background-color: #333;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px; // Tamanho reduzido em telas menores
+    width: 120px; // Largura menor em telas menores
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px; // Tamanho ainda menor para telas muito pequenas
+    width: 100%; // Botões ocupam toda a largura disponível
   }
 `;
 
