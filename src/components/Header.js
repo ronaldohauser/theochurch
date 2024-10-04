@@ -100,13 +100,21 @@ const HamburgerIcon = styled.div`
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  
+
+  const handleMenuToggle = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
+  const handleLinkClick = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <HeaderContainer>
       <Link to="/">
         <Logo src={logo} alt="Theo Church Logo" />
       </Link>
-      <HamburgerIcon onClick={() => setMenuOpen(!menuOpen)}>
+      <HamburgerIcon onClick={handleMenuToggle}>
         {menuOpen ? <FaTimes /> : <FaBars />}
       </HamburgerIcon>
       <Nav isOpen={menuOpen}>
@@ -123,12 +131,12 @@ const Header = () => {
             </IconLink>
           </>
         )}
-        <NavLink to="/">HOME</NavLink>
-        <NavLink to="/sobre-nos">SOBRE</NavLink>
-        <NavLink to="/agenda">AGENDA</NavLink>
-        <NavLink to="/ministerios">MINISTÉRIOS</NavLink>
-        <NavLink to="/celulas">CÉLULAS</NavLink> {/* Novo menu adicionado */}
-        <NavLink to="/contato">CONTATO</NavLink>
+        <NavLink to="/" onClick={handleLinkClick}>HOME</NavLink>
+        <NavLink to="/sobre-nos" onClick={handleLinkClick}>SOBRE</NavLink>
+        <NavLink to="/agenda" onClick={handleLinkClick}>AGENDA</NavLink>
+        <NavLink to="/ministerios" onClick={handleLinkClick}>MINISTÉRIOS</NavLink>
+        <NavLink to="/celulas" onClick={handleLinkClick}>CÉLULAS</NavLink>
+        <NavLink to="/contato" onClick={handleLinkClick}>CONTATO</NavLink>
       </Nav>
     </HeaderContainer>
   );
