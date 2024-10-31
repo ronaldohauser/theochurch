@@ -107,7 +107,7 @@ const Button = styled(Link)`
   }
 `;
 
-const Agenda = () => {
+const OndeEstamos = () => {
   return (
     <div>
       <VideoContainer>
@@ -136,4 +136,4 @@ const Agenda = () => {
   );
 };
 
-export default Agenda;
+export default OndeEstamos;

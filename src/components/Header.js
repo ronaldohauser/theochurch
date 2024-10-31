@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaYoutube, FaFacebook, FaInstagram, FaBars, FaTimes } from 'react-icons/fa'; 
+import { FaYoutube, FaFacebook, FaInstagram, FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 
 const HeaderContainer = styled.header`
@@ -30,6 +30,10 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   gap: 30px;
+
+  @media (max-width: 1200px) {
+    gap: 20px;
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -71,14 +75,15 @@ const YouTubeIcon = styled(IconLink)`
 `;
 
 const NavLink = styled(Link)`
-  position: relative; /* Adicionado para o pseudo-elemento */
+  position: relative;
   color: white;
   text-decoration: none;
   font-size: 28px;
-  font-weight: 300; /* Mudado para um peso de fonte mais fino */
+  font-weight: 300;
   text-transform: uppercase;
   font-family: 'Poppins', sans-serif;
   transition: color 0.2s;
+  white-space: nowrap;
 
   &:hover {
     color: #ccc;
@@ -88,16 +93,16 @@ const NavLink = styled(Link)`
     content: '';
     position: absolute;
     left: 0;
-    bottom: -5px; /* Distância da linha em relação ao texto */
+    bottom: -5px;
     width: 100%;
-    height: 2px; /* Espessura da linha */
-    background-color: #ccc; /* Cor da linha */
-    transform: scaleX(0); /* Inicia invisível */
-    transition: transform 0.3s ease; /* Transição suave */
+    height: 2px;
+    background-color: #ccc;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
   }
 
   &:hover::after {
-    transform: scaleX(1); /* Mostra a linha ao passar o mouse */
+    transform: scaleX(1);
   }
 
   @media (max-width: 768px) {
@@ -137,24 +142,20 @@ const Header = () => {
         {menuOpen ? <FaTimes /> : <FaBars />}
       </HamburgerIcon>
       <Nav isOpen={menuOpen}>
-        {!menuOpen && (
-          <>
-            <YouTubeIcon href="https://www.youtube.com/@Theochurch23" target="_blank" rel="noopener noreferrer">
-              <FaYoutube />
-            </YouTubeIcon>
-            <IconLink href="https://www.facebook.com/theochurch23/" target="_blank" rel="noopener noreferrer">
-              <FaFacebook />
-            </IconLink>
-            <IconLink href="https://www.instagram.com/theochurch23/" target="_blank" rel="noopener noreferrer">
-              <FaInstagram />
-            </IconLink>
-          </>
-        )}
+        <YouTubeIcon href="https://www.youtube.com/@Theochurch23" target="_blank" rel="noopener noreferrer">
+          <FaYoutube />
+        </YouTubeIcon>
+        <IconLink href="https://www.facebook.com/theochurch23/" target="_blank" rel="noopener noreferrer">
+          <FaFacebook />
+        </IconLink>
+        <IconLink href="https://www.instagram.com/theochurch23/" target="_blank" rel="noopener noreferrer">
+          <FaInstagram />
+        </IconLink>
         <NavLink to="/" onClick={handleLinkClick}>HOME</NavLink>
-        <NavLink to="/sobre-nos" onClick={handleLinkClick}>SOBRE</NavLink>
-        <NavLink to="/agenda" onClick={handleLinkClick}>AGENDA</NavLink>
-        <NavLink to="/celulas" onClick={handleLinkClick}>CÉLULAS</NavLink>
-        <NavLink to="/ministerios" onClick={handleLinkClick}>MINISTÉRIOS</NavLink>
+        <NavLink to="/sobre-nos" onClick={handleLinkClick}>SOBRE NÓS</NavLink>
+        <NavLink to="/onde-estamos" onClick={handleLinkClick}>ONDE ESTAMOS</NavLink>
+        <NavLink to="/colabore" onClick={handleLinkClick}>COLABORE</NavLink>
+        <NavLink to="/culto-ao-vivo" onClick={handleLinkClick}>CULTO AO VIVO</NavLink> {/* Adicionando novo item */}
         <NavLink to="/contato" onClick={handleLinkClick}>CONTATO</NavLink>
       </Nav>
     </HeaderContainer>
