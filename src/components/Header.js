@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaYoutube, FaFacebook, FaInstagram, FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 
 const HeaderContainer = styled.header`
@@ -14,6 +14,7 @@ const HeaderContainer = styled.header`
   top: 0;
   left: 0;
   width: 100%;
+  height: 90px; /* Adicione uma altura fixa */
   z-index: 1;
   font-family: 'Poppins', sans-serif;
 `;
@@ -54,24 +55,6 @@ const Nav = styled.nav`
       transform: translateX(0);
     `}
   }
-`;
-
-const IconLink = styled.a`
-  color: white;
-  font-size: 28px;
-  transition: color 0.2s;
-
-  &:hover {
-    color: #ccc;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 50px;
-  }
-`;
-
-const YouTubeIcon = styled(IconLink)`
-  font-size: 32px;
 `;
 
 const NavLink = styled(Link)`
@@ -142,15 +125,6 @@ const Header = () => {
         {menuOpen ? <FaTimes /> : <FaBars />}
       </HamburgerIcon>
       <Nav isOpen={menuOpen}>
-        <YouTubeIcon href="https://www.youtube.com/@Theochurch23" target="_blank" rel="noopener noreferrer">
-          <FaYoutube />
-        </YouTubeIcon>
-        <IconLink href="https://www.facebook.com/theochurch23/" target="_blank" rel="noopener noreferrer">
-          <FaFacebook />
-        </IconLink>
-        <IconLink href="https://www.instagram.com/theochurch23/" target="_blank" rel="noopener noreferrer">
-          <FaInstagram />
-        </IconLink>
         <NavLink to="/" onClick={handleLinkClick}>HOME</NavLink>
         <NavLink to="/sobre-nos" onClick={handleLinkClick}>SOBRE NÓS</NavLink>
         <NavLink to="/onde-estamos" onClick={handleLinkClick}>ONDE ESTAMOS</NavLink>

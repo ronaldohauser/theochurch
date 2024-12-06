@@ -1,116 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FaChurch, FaQuestionCircle, FaPray } from 'react-icons/fa';
-import VideoGallery from './VideoGallery'; 
-import { Link } from 'react-router-dom'; // Importando Link
+
+// Corrigir o caminho para as imagens importadas corretamente
+import slide1 from '../assets/slide1.jpg';
+import slide2 from '../assets/slide2.jpg';
+import slide3 from '../assets/slide3.jpg';
+import slide4 from '../assets/slide4.jpg';
 
 // Estilos para os componentes
-const WelcomeContainer = styled.div`
-  text-align: center;
-  padding: 20px 10%;
-  color: black;
-  min-height: 50vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  @media (max-width: 768px) {
-    padding: 20px 5%;
-  }
-`;
-
 const WelcomeText = styled.h1`
-  font-size: 56px;
+  font-size: 48px;
+  font-weight: 600;
   margin: 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-
+  color: #333;
+  
   @media (max-width: 768px) {
     font-size: 36px;
   }
 `;
 
-const SubText = styled.p`
-  font-size: 24px;
-  margin: 10px 0 20px;
-  line-height: 1.5;
-
+const InfoTitle = styled.h2`
+  font-size: 28px;
+  margin-top: 20px;
+  font-weight: 500;
+  color: #333;
+  
   @media (max-width: 768px) {
-    font-size: 18px;
+    font-size: 24px;
   }
 `;
 
-const VerseText = styled.p`
-  font-size: 24px;
-  margin: 20px 0 0;
-
-  @media (max-width: 768px) {
-    font-size: 18px;
-  }
-`;
-
-const CardsSection = styled.div`
-  background-color: #f9f9f9;
-  padding: 20px 0;
-  text-align: center;
-`;
-
-const CardsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 20px;
-  padding: 40px 20px;
-  background-color: #f9f9f9;
-  flex-wrap: wrap;
-
-  @media (max-width: 768px) {
-    padding: 20px 5%;
-  }
-`;
-
-const Card = styled(Link)`
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  flex: 1 1 200px;
-  max-width: 300px;
-  height: 300px;
-  padding: 20px;
-  cursor: pointer;
-  transition: transform 0.2s;
-  text-decoration: none; // Removendo o sublinhado do Link
-  color: inherit; // Mantendo a cor do texto igual à do Card
-
-  &:hover {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-    height: auto;
-  }
-`;
-
-const IconContainer = styled.div`
-  font-size: 80px;
-  margin-bottom: 20px;
-  color: #000;
-`;
-
-const CardText = styled.p`
+const InfoText = styled.p`
   font-size: 18px;
-  line-height: 1.4;
-  margin: 0;
+  margin: 8px 0;
+  line-height: 1.6;
+  color: #555;
 
   @media (max-width: 768px) {
     font-size: 16px;
   }
 `;
 
-const CardsTitle = styled.h2`
+const EventSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #e0e0e0; /* Removi o border-top */
+`;
+
+const EventTitle = styled.h2`
   font-size: 32px;
   margin: 20px 0;
-  color: black;
+  color: #333;
   text-align: center;
 
   @media (max-width: 768px) {
@@ -118,48 +58,172 @@ const CardsTitle = styled.h2`
   }
 `;
 
-// Componente principal
+const EventGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+`;
+
+const EventCard = styled.div`
+  flex: 1 1 50%;
+  padding: 0;
+  color: ${({ bgColor }) => (bgColor === 'black' ? 'white' : 'black')};
+  background-color: ${({ bgColor }) => bgColor};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    flex: 1 1 100%;
+    display: ${({ bgColor }) => (bgColor === 'white' ? 'none' : 'flex')};
+  }
+`;
+
+const EventText = styled.p`
+  font-size: 20px;
+  margin: 5px 0;
+  line-height: 1.5;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+`;
+
+const EventImage = styled.img`
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: none;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    object-fit: contain; /* Evita cortes na imagem */
+    max-height: 418px;
+  }
+`;
+
+const WelcomeAndScheduleContainer = styled.div`
+  text-align: center;
+  padding: 20px 10%;
+  color: black;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f1f1f1;
+  margin: 20px 0;
+`;
+
 const Home = () => {
+  const [isImageOpen, setIsImageOpen] = useState(false);  // Estado para controlar a ampliação da imagem
+  const [imageSrc, setImageSrc] = useState(null);  // Para armazenar o src da imagem ampliada
+
+  // Função para abrir a imagem
+  const handleImageClick = (src) => {
+    setIsImageOpen(true);
+    setImageSrc(src);
+  };
+
+  // Função para fechar a imagem
+  const handleCloseImage = () => {
+    setIsImageOpen(false);
+    setImageSrc(null);
+  };
+
   return (
     <div>
-      <WelcomeContainer>
-        <WelcomeText>Bem-vindo à Theo Church!</WelcomeText>
-        <SubText>
-          Nascemos de uma preocupação necessária: preparar a noiva para a volta de Cristo. Nossa missão é ser uma comunidade acolhedora e comprometida com o ensino da Palavra, promovendo o crescimento espiritual e a comunhão entre os irmãos.
-        </SubText>
-        <VerseText>
-          "Porque eu sei os planos que tenho para vocês", diz o Senhor, "planos de fazê-los prosperar e não de lhes causar dano, planos de dar-lhes esperança e um futuro." - Jeremias 29:11
-        </VerseText>
-      </WelcomeContainer>
+      <WelcomeAndScheduleContainer>
+        <WelcomeText>A Igreja Theo Church <br /> espera por você</WelcomeText>
+        <InfoTitle>Cultos</InfoTitle>
+        <InfoText>Culto de ensino - Quarta-feira às 20h</InfoText>
+        <InfoText>Culto da Família - Domingos às 10 e 19h</InfoText>
+        <InfoText>Santa Ceia - 1º Domingo de cada mês</InfoText>
+        <InfoText>Culto de Oração - 1ª Segunda de cada mês</InfoText>
+      </WelcomeAndScheduleContainer>
 
-      <VideoGallery />
+      <EventSection>
+        <EventTitle>Próximos Eventos</EventTitle>
+        <EventGrid>
+          {/* Linha 1 */}
+          <EventCard bgColor="white" hideText={false}>
+            <div>
+              <EventText as="h3">Ceia do Senhor</EventText>
+              <EventText>Junte-se a nós para uma noite especial de reflexão e celebração do sacrifício de Cristo.</EventText>
+            </div>
+          </EventCard>
 
-      <CardsSection>
-        <CardsTitle>Conheça nossa comunidade!</CardsTitle>
-      </CardsSection>
+          <EventCard bgColor="black" hideText={true}>
+            <EventImage src={slide1} alt="Ceia do Senhor" onClick={() => handleImageClick(slide1)} />
+          </EventCard>
 
-      <CardsContainer>
-        <Card to="/sobre-nos"> {/* Redireciona para o menu "Sobre" */}
-          <IconContainer>
-            <FaChurch />
-          </IconContainer>
-          <CardText>Procuro uma igreja para congregar.</CardText>
-        </Card>
-        <Card to="/agenda"> {/* Redireciona para o menu "Agenda" */}
-          <IconContainer>
-            <FaQuestionCircle />
-          </IconContainer>
-          <CardText>Não sou Cristão, mas tenho curiosidade.</CardText>
-        </Card>
-        <Card to="/celulas"> {/* Redireciona para o menu "CÉLULAS" */}
-          <IconContainer>
-            <FaPray />
-          </IconContainer>
-          <CardText>Gostaria de fazer um pedido de oração.</CardText>
-        </Card>
-      </CardsContainer>
+          {/* Linha 2 */}
+          <EventCard bgColor="black" hideText={true}>
+            <EventImage src={slide2} alt="Cantata de Natal" onClick={() => handleImageClick(slide2)} />
+          </EventCard>
+
+          <EventCard bgColor="white" hideText={false}>
+            <div>
+              <EventText as="h3">Cantata de Natal</EventText>
+              <EventText>Celebraremos o nascimento de Cristo com muita alegria e emoção. Esperança, união e a alegria do amor de Deus.</EventText>
+            </div>
+          </EventCard>
+
+          {/* Linha 3 */}
+          <EventCard bgColor="white" hideText={false}>
+            <div>
+              <EventText as="h3">Culto da Virada</EventText>
+              <EventText>Junte-se a nós para um culto emocionante, onde unimos nossos corações em busca de renovação espiritual e força para enfrentar os desafios do novo ano com fé e esperança.</EventText>
+            </div>
+          </EventCard>
+
+          <EventCard bgColor="black" hideText={true}>
+            <EventImage src={slide3} alt="Culto da Virada" onClick={() => handleImageClick(slide3)} />
+          </EventCard>
+
+          {/* Linha 4 */}
+          <EventCard bgColor="black" hideText={true}>
+            <EventImage src={slide4} alt="Theo Running" onClick={() => handleImageClick(slide4)} />
+          </EventCard>
+
+          <EventCard bgColor="white" hideText={false}>
+            <div>
+              <EventText as="h3">Theo Running</EventText>
+              <EventText>Viva uma experiência única de bem-estar e solidariedade. Seja parte dessa jornada em um evento que mistura ação, fé e compromisso com o próximo.</EventText>
+            </div>
+          </EventCard>
+        </EventGrid>
+      </EventSection>
+
+      {/* Se a imagem estiver aberta, exibe uma sobreposição para mostrar a imagem ampliada */}
+      {isImageOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000,
+          }}
+          onClick={handleCloseImage}  // Fecha a imagem quando clicado fora
+        >
+          <img
+            src={imageSrc}
+            alt="Imagem Ampliada"
+            style={{ maxWidth: '90%', maxHeight: '90%', objectFit: 'contain' }}
+          />
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default Home;

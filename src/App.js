@@ -11,6 +11,7 @@ import CultoAoVivo from './components/CultoAoVivo'; // Importando o novo compone
 import Footer from './components/Footer';
 import Hero from './components/Hero';
 import GlobalStyles from './GlobalStyles';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

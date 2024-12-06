@@ -7,12 +7,12 @@ import slide3 from '../assets/slide3.jpg';
 
 const HeroContainer = styled.div`
   width: 100%;
-  height: 800px;
+  height: 100vh; /* Ocupa toda a altura da tela */
   position: relative;
   overflow: hidden;
 
   @media (max-width: 768px) {
-    height: 600px;
+    display: none; /* Esconde o carrossel em telas pequenas */
   }
 `;
 
@@ -21,8 +21,13 @@ const Slide = styled.div`
   height: 100%;
   position: absolute;
   transition: opacity 1s ease-in-out;
-  opacity: ${(props) => (props.active ? 1 : 0)};
-  background: url(${(props) => props.bg}) no-repeat center center/cover;
+  opacity: ${(props) => (props.active ? 1 : 0)}; 
+  background: url(${(props) => props.bg}) no-repeat center center;
+  background-size: cover;
+
+  @media (max-width: 768px) {
+    background-size: contain;
+  }
 `;
 
 const DotsContainer = styled.div`
@@ -63,7 +68,7 @@ const NavigationButton = styled.button`
   }
 
   @media (max-width: 768px) {
-    display: none;
+    display: none; /* Esconde os botões de navegação em telas pequenas */
   }
 `;
 
