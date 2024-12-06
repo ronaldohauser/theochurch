@@ -108,7 +108,7 @@ const EventImage = styled.img`
 
 const WelcomeAndScheduleContainer = styled.div`
   text-align: center;
-  padding: 20px 10%;
+  padding: 100px 10% 20px;
   color: black;
   min-height: 50vh;
   display: flex;
@@ -116,6 +116,8 @@ const WelcomeAndScheduleContainer = styled.div`
   justify-content: center;
   background-color: #f1f1f1;
   margin: 20px 0;
+  position: relative;  // Garantindo o controle de posicionamento
+  z-index: 1;  // Garante que o conteúdo fique acima do header
 `;
 
 const Home = () => {
